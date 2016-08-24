@@ -1,0 +1,12 @@
+<% @tweets.each do |tweet| %>
+    <tr>
+      <td><%= tweet.body %></td>
+      <td><%= link_to 'Show', [@zombie, tweet] %></td>
+      <td><%= link_to 'Edit', edit_zombie_tweet_path(@zombie, tweet) %></td>
+      <td><%= link_to 'Destroy', [@zombie, tweet], method: :delete %></td>
+    </tr>
+<% end %>
+
+<%= link_to "New Tweet", new_zombie_tweet_path(@zombie) %>
+
+

@@ -1,0 +1,34 @@
+<div id="zombies">
+  <%= render @zombies %>
+</div>
+
+<%= form_for(Zombie.new, remote: true) do |f| %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+
+<h2><%= @zombie.name %>'s weapons</h2>
+<ul>
+  <% @weapons.each do |w| %>
+      <li><%= link_to w.name, [@zombie, w] %></li>
+  <% end %>
+</ul>
+
+<% @zombies.each do |zombie| %>
+    <%= div_for zombie do %>
+        <%= link_to "Zombie #{zombie.name}", zombie %>
+        <div class="actions">
+          <%= link_to 'edit', edit_zombie_path(zombie) %>
+          <%= link_to 'delete', zombie, method: :delete , remote: true %>
+        </div>
+    <% end %>
+<% end %>
+
+<%= link_to "New Weapon", new_zombie_weapon_path(@zombie) %>
+
+
